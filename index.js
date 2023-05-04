@@ -21,3 +21,45 @@ const spinnerSearchEl = document.querySelector(".spinner--search");
 const spinnerJobDetailsEl = document.querySelector(".spinner--job-details");
 
 // -- SEARCH COMPONENT --
+const submitHandler = event => {
+  // prevent default behaviour
+  event.preventDefault();
+
+  // get search text
+  const searchText = searchInputEl.value;
+
+  // validation (regular expression example)
+  const forbiddenPattern = /[0-9]/;
+  const patternMatch = forbiddenPattern.test(searchText);
+  if (patternMatch) {
+    errorTextEl.textContent = 'Your search may not contain numbers';
+    errorEl.classList.add('error--visible');
+    setTimeout(() => {
+        errorEl.classList.remove('error--visible');
+    }, 3200);
+  }
+
+  // blur input
+  searchInputEl.blur();
+
+  // render spinner
+  spinnerSearchEl.classList.add('spinner--visible');
+
+  // fetch search results
+  fetch(`https://bytegrad.com/course-assets/js/2/api/jobs?search=${searchText}`)
+       .then(response => {
+           if (response.ok){
+            console.log('Something went wrong.');
+            return;
+           }
+
+           return response.json();
+       })
+       .then(data => {
+          console.log(data);
+       })
+       .catch(error => console.log(error));
+
+};
+
+searchFormEl.addEventListener('submit', submitHandler);
