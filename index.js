@@ -67,27 +67,30 @@ const submitHandler = event => {
           numberEl.textContent = jobItems.length;
 
           //render job items from the search job list
-          const newJonItemHTML = `<li class="job-item">
-          <a class="job-item__link" href="${jobItems[4].id}">
-              <div class="job-item__badge">${jobItems[4].badgeLetters}</div>
-              <div class="job-item__middle">
-                  <h3 class="third-heading">${jobItems[4].title}</h3>
-                  <p class="job-item__company">${jobItems[4].company}</p>
-                  <div class="job-item__extras">
-                      <p class="job-item__extra"><i class="fa-solid fa-clock job-item__extra-icon"></i> ${jobItems[4].duration}</p>
-                      <p class="job-item__extra"><i class="fa-solid fa-money-bill job-item__extra-icon"></i>${jobItems[4].salary}</p>
-                      <p class="job-item__extra"><i class="fa-solid fa-location-dot job-item__extra-icon"></i>${jobItems[4].location}</p>
-                  </div>
-              </div>
-              <div class="job-item__right">
-                  <i class="fa-solid fa-bookmark job-item__bookmark-icon"></i>
-                  <time class="job-item__time">${jobItems[4].daysAgo}</time>
-              </div>
-          </a>
-      </li>
-      `;
-          
-       })
+          jobItems.forEach(jobItem =>{
+            const newJobItemHTML = `<li class="job-item">
+            <a class="job-item__link" href="${jobItem.id}">
+                <div class="job-item__badge">${jobItem.badgeLetters}</div>
+                <div class="job-item__middle">
+                    <h3 class="third-heading">${jobItem.title}</h3>
+                    <p class="job-item__company">${jobItem.company}</p>
+                    <div class="job-item__extras">
+                        <p class="job-item__extra"><i class="fa-solid fa-clock job-item__extra-icon"></i> ${jobItem.duration}</p>
+                        <p class="job-item__extra"><i class="fa-solid fa-money-bill job-item__extra-icon"></i>${jobItem.salary}</p>
+                        <p class="job-item__extra"><i class="fa-solid fa-location-dot job-item__extra-icon"></i>${jobItem.location}</p>
+                    </div>
+                </div>
+                <div class="job-item__right">
+                    <i class="fa-solid fa-bookmark job-item__bookmark-icon"></i>
+                    <time class="job-item__time">${jobItem.daysAgo}</time>
+                </div>
+            </a>
+        </li>
+        `;
+        jobListSearchEl.insertAdjacentHTML('beforeend', newJobItemHTML);
+            
+    })          
+  })
        .catch(error => console.log(error));
 
 };
