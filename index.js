@@ -42,6 +42,9 @@ const submitHandler = event => {
   // blur input
   searchInputEl.blur();
 
+//remove previous job items
+jobListSearchEl.innerHTML = '';
+
   // render spinner
   spinnerSearchEl.classList.add('spinner--visible');
 
@@ -67,7 +70,7 @@ const submitHandler = event => {
           numberEl.textContent = jobItems.length;
 
           //render job items from the search job list
-          jobItems.forEach(jobItem =>{
+          jobItems.slice(0, 7).forEach(jobItem =>{
             const newJobItemHTML = `<li class="job-item">
             <a class="job-item__link" href="${jobItem.id}">
                 <div class="job-item__badge">${jobItem.badgeLetters}</div>
@@ -82,7 +85,7 @@ const submitHandler = event => {
                 </div>
                 <div class="job-item__right">
                     <i class="fa-solid fa-bookmark job-item__bookmark-icon"></i>
-                    <time class="job-item__time">${jobItem.daysAgo}</time>
+                    <time class="job-item__time">${jobItem.daysAgo}d</time>
                 </div>
             </a>
         </li>
