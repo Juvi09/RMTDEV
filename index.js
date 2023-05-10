@@ -1,4 +1,4 @@
-// -- GLOBAL --
+// !-- GLOBAL --
 const bookmarksBtnEl = document.querySelector('.bookmarks-btn');
 const errorEl = document.querySelector('.error');
 const errorTextEl = document.querySelector('.error__text');
@@ -20,15 +20,15 @@ const sortingBtnRecentEl = document.querySelector(".sorting__button--recent");
 const spinnerSearchEl = document.querySelector(".spinner--search");
 const spinnerJobDetailsEl = document.querySelector(".spinner--job-details");
 
-// -- SEARCH COMPONENT --
+// !-- SEARCH COMPONENT --
 const submitHandler = event => {
-  // prevent default behaviour
+  // !prevent default behaviour
   event.preventDefault();
 
-  // get search text
+  // !get search text
   const searchText = searchInputEl.value;
 
-  // validation (regular expression example)
+  // !validation (regular expression example)
   const forbiddenPattern = /[0-9]/;
   const patternMatch = forbiddenPattern.test(searchText);
   if (patternMatch) {
@@ -39,16 +39,16 @@ const submitHandler = event => {
     }, 3200);
   }
 
-  // blur input
+  // !blur input
   searchInputEl.blur();
 
-//remove previous job items
+// !remove previous job items
 jobListSearchEl.innerHTML = '';
 
-  // render spinner
+  // !render spinner
   spinnerSearchEl.classList.add('spinner--visible');
 
-  // fetch search results
+  // !fetch search results
   fetch(`https://bytegrad.com/course-assets/js/2/api/jobs?search=${searchText}`)
        .then(response => {
            if (response.ok){
@@ -59,17 +59,17 @@ jobListSearchEl.innerHTML = '';
            return response.json();
        })
        .then(data => {
-        // extract job items
+        // !extract job items
           const { jobItems } = data;
  
           
-        // remoove the spinner
+        // !remoove the spinner
           spinnerSearchEl.classList.remove('spinner--visible');
 
-        //render number of results
+        // !render number of results
           numberEl.textContent = jobItems.length;
 
-          //render job items from the search job list
+          // !render job items from the search job list
           jobItems.slice(0, 7).forEach(jobItem =>{
             const newJobItemHTML = `<li class="job-item">
             <a class="job-item__link" href="${jobItem.id}">
@@ -99,3 +99,17 @@ jobListSearchEl.innerHTML = '';
 };
 
 searchFormEl.addEventListener('submit', submitHandler);
+
+// ! JOB LIST COMPONENT
+const clickHandler = () => {
+    // !prevent default behaviour (navigation)
+    event.preventDefault();
+
+    // !get clicked job item element
+    const jobItemEL = event.target.closest('.job-item');
+
+    // !add active class
+    jobItemEL.classList.add('job-item--active');
+};
+
+jobListSearchEl.addEventListener('submit', clickHandler)
