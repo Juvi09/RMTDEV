@@ -108,8 +108,19 @@ const clickHandler = () => {
     // !get clicked job item element
     const jobItemEL = event.target.closest('.job-item');
 
+    // !remove the active class from previously aactive job item
+    document.querySelector('.job-item--active')?.classList.remove('job-item--active');
+
     // !add active class
     jobItemEL.classList.add('job-item--active');
+
+    // !empty the job details section
+    jobDetailsContentEl.innerHTML = '';
+ 
+    // !render spinner
+    spinnerJobDetailsEl.classList.add('spinner--visible')
+    
+
 };
 
 jobListSearchEl.addEventListener('submit', clickHandler)
