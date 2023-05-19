@@ -1,4 +1,11 @@
-// !-- SEARCH COMPONENT --
+import {
+    searchInputEl,
+    searchFormEl,
+    spinnerSearchEl,
+    jobListSearchEl,
+    numberEl
+} from '../common';
+
 const submitHandler = event => {
     // !prevent default behaviour
     event.preventDefault();

@@ -1,4 +1,9 @@
-// ! JOB LIST COMPONENT
+import {
+    jobListSearchEl,
+    jobDetailsContentEl,
+    spinnerJobDetailsEl
+} from '../common';
+ 
 const clickHandler = () => {
     // !prevent default behaviour (navigation)
     event.preventDefault();
