@@ -1,8 +1,9 @@
 import {
     jobListSearchEl,
     jobDetailsContentEl,
-    spinnerJobDetailsEl
 } from '../common.js';
+
+import renderSpinner from './Spinner.js';
  
 const clickHandler = () => {
     // !prevent default behaviour (navigation)
@@ -21,7 +22,7 @@ const clickHandler = () => {
     jobDetailsContentEl.innerHTML = '';
  
     // !render spinner
-    spinnerJobDetailsEl.classList.add('spinner--visible');
+    renderSpinner('job-details');
 
     // !get id
     const id = jobItemEL.children[0].getAttribute('href');
@@ -42,7 +43,7 @@ const clickHandler = () => {
           const { jobItem } = data;
 
           // !remove spinner 
-          spinnerJobDetailsEl.classList.remove('spinner--visible');
+          renderSpinner('job-details');
 
           // !render job details
           const jobDetailsHTML = `
