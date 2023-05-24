@@ -46,7 +46,7 @@ const submitHandler = event => {
          })
          .then(data => {
           // !extract job items
-            const { jobItems } = data;
+            const { jobItems }  = data || undefined;
    
             
           // !remoove the spinner
@@ -56,7 +56,7 @@ const submitHandler = event => {
             numberEl.textContent = jobItems.length;
   
             // !render job items from the search job list
-              renderJobList(jobItems);      
+            renderJobList(jobItems);      
     })
       .catch(error => console.log(error));
   

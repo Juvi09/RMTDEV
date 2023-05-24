@@ -32,7 +32,7 @@ const renderJobList = jobItems => {
   })
 };
 
-import renderSpinner from './Spinner.js';
+//import renderSpinner from './Spinner.js';
  
 const clickHandler = () => {
     // !prevent default behaviour (navigation)
