@@ -27,7 +27,7 @@ const submitHandler = event => {
   
     // !blur input
     searchInputEl.blur();
-  
+
   // !remove previous job items
   jobListSearchEl.innerHTML = '';
   
@@ -46,17 +46,17 @@ const submitHandler = event => {
          })
          .then(data => {
           // !extract job items
-            const { jobItems }  = data || undefined;
+            const { jobItem }  = data;
    
-            
+            //console.log(jobItems);
           // !remoove the spinner
             renderSpinner('search');
   
           // !render number of results
-            numberEl.textContent = jobItems.length;
+            numberEl.textContent = jobItem.length;
   
             // !render job items from the search job list
-            renderJobList(jobItems);      
+            renderJobList(jobItem);      
     })
       .catch(error => console.log(error));
   
