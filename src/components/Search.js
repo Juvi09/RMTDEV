@@ -29,7 +29,7 @@ const submitHandler = event => {
     searchInputEl.blur();
 
   // !remove previous job items
-  jobListSearchEl.innerHTML = '';
+    jobListSearchEl.innerHTML = '';
   
     // !render spinner
     renderSpinner('search');
@@ -37,7 +37,7 @@ const submitHandler = event => {
     // !fetch search results
     fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
          .then(response => {
-             if (response.ok){
+             if (!response.ok){
               console.log('Something went wrong.');
               return;
              }
