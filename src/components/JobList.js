@@ -6,6 +6,8 @@ import {
 
 import renderSpinner from './Spinner.js';
 import renderJobDetails from './JobDetails.js';
+import renderError from './Error.js';
+
 
 const renderJobList = jobItems => {
     jobItems.slice(0, 7).forEach(jobItem =>{
@@ -61,6 +63,10 @@ const clickHandler = async event => {
     const response = await fetch(`${BASE_API_URL}/jobs/${id}`);
     const data = await response.json();
 
+     if (!response.ok) { // !4xx, 5xx status code
+           throw new Error(data.description);
+         }
+
      // !extract job item
          const { jobItem } = data;
 
@@ -71,27 +77,10 @@ const clickHandler = async event => {
          renderJobDetails(jobItem);
       
     } catch(error){
-      renderSpinner('search');
+      renderSpinner('job-details');
       renderError(error.message);
     }
     
-    
-    //fetch(`${BASE_API_URL}/jobs/${id}`)
-       // .then(response => {
-        //  if (!response.ok) { // !4xx, 5xx status code
-         //   throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
-         //}
-
-        //  return response.json();
-
-       // })
-
-       // })
-        //.catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
-        // 
-        //}); 
-    
-
 };
 
 jobListSearchEl.addEventListener('submit', clickHandler);
