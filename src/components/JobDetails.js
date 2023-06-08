@@ -2,6 +2,9 @@ import {
     jobDetailsContentEl
 } from '../common.js';
 
+import { jobDetailsEl } from '../common.js';
+
+
 const renderJobDetails = jobItem => {
     const jobDetailsHTML = `
          <img src="${jobItem.coverImgURL}" alt="#" class="job-details__cover-img">
