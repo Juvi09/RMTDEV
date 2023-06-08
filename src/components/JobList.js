@@ -59,10 +59,9 @@ const clickHandler = () => {
     // !fetch job item data
     fetch(`${BASE_API_URL}/jobs/${id}`)
         .then(response => {
-          if (response.ok) {
-            console.log('something went wrong');
-            return;
-          }
+          if (!response.ok) { // !4xx, 5xx status code
+            throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
+         }
 
           return response.json();
 
@@ -78,7 +77,10 @@ const clickHandler = () => {
           renderJobDetails(jobItem);
 
         })
-        .catch(error => console.log(error));
+        .catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
+          renderSpinner('search');
+          renderError(error.message);
+        }); 
     
 
 };
