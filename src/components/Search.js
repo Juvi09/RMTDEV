@@ -38,7 +38,7 @@ const submitHandler = event => {
     fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
          .then(response => {
              if (!response.ok) { // !4xx, 5xx status code
-               throw new Error();
+               throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
             }
   
              return response.json();
