@@ -37,8 +37,11 @@ const submitHandler = event => {
     // !fetch search results
     fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
          .then(response => {
-             if (!response.ok){
-              console.log('Something went wrong.');
+             if (!response.ok){ // !4xx, 5xx status code
+               throw {
+                   message: 'Resource issue (e.g. resource doesn\'t exist) or server issue',
+                   name: 'Error' 
+               };
               return;
              }
   
@@ -46,19 +49,21 @@ const submitHandler = event => {
          })
          .then(data => {
           // !extract job items
-            const { jobItem }  = data;
+            const { jobItems }  = data;
    
             //console.log(jobItems);
           // !remoove the spinner
             renderSpinner('search');
   
           // !render number of results
-            numberEl.textContent = jobItem.length;
+            numberEl.textContent = jobItems.length;
   
             // !render job items from the search job list
-            renderJobList(jobItem);      
+            renderJobList(jobItems);      
     })
-      .catch(error => console.log(error));
+      .catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
+           console.log(error.message);
+        });
   
   };
   
