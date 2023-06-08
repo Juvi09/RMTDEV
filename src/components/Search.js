@@ -10,7 +10,7 @@ import renderError from './Error.js';
 import renderSpinner from './Spinner.js';
 import renderJobList from './JobList.js';
 
-const submitHandler = event => {
+const submitHandler = async event => {
     // !prevent default behaviour
     event.preventDefault();
   
@@ -35,32 +35,39 @@ const submitHandler = event => {
     renderSpinner('search');
   
     // !fetch search results
-    fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
-         .then(response => {
-             if (!response.ok) { // !4xx, 5xx status code
-               throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
-            }
+    
+
+
+
+
+     
+
+    //fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
+         //.then(response => {
+          //   if (!response.ok) { // !4xx, 5xx status code
+            //   throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
+           // }
   
-             return response.json();
-         })
-         .then(data => {
+           //  return response.json();
+       //  })
+       //  .then(data => {
           // !extract job items
-            const { jobItems }  = data;
+       //     const { jobItems }  = data;
    
             //console.log(jobItems);
           // !remoove the spinner
-            renderSpinner('search');
+       //     renderSpinner('search');
   
           // !render number of results
-            numberEl.textContent = jobItems.length;
+         //   numberEl.textContent = jobItems.length;
   
             // !render job items from the search job list
-            renderJobList(jobItems);      
-    })
-      .catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
-           renderSpinner('search');
-           renderError(error.message);
-        });
+          //  renderJobList(jobItems);      
+    //})
+     // .catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
+          // renderSpinner('search');
+          // renderError(error.message);
+       // });
   
   };
   
