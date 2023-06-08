@@ -36,38 +36,35 @@ const submitHandler = async event => {
   
     // !fetch search results
     
-
-
-
-
+ 
      
+      try {
 
-    //fetch(`${BASE_API_URL}/jobs?search=${searchText}`)
-         //.then(response => {
-          //   if (!response.ok) { // !4xx, 5xx status code
-            //   throw new Error('Resource issue (e.g. resource doesn\'t exist) or server issue');
-           // }
-  
-           //  return response.json();
-       //  })
-       //  .then(data => {
-          // !extract job items
-       //     const { jobItems }  = data;
+        const response = await fetch(`${BASE_API_URL}/jobs?search=${searchText}`);
+        const data = await response.json();
+
+        if (!response.ok) { // !4xx, 5xx status code
+             throw new Error(data.description);
+          }
+
+       // !extract job items
+         const { jobItems }  = data;
    
-            //console.log(jobItems);
-          // !remoove the spinner
-       //     renderSpinner('search');
+          //console.log(jobItems);
+       // !remoove the spinner
+         renderSpinner('search');
+
+       // !render number of results
+         numberEl.textContent = jobItems.length;
+
+       // !render job items from the search job list
+         renderJobList(jobItems); 
+
+      } catch(error){
   
-          // !render number of results
-         //   numberEl.textContent = jobItems.length;
-  
-            // !render job items from the search job list
-          //  renderJobList(jobItems);      
-    //})
-     // .catch(error => { // !Network problem or other errors  (e.g trying to parse something that is not JSON as JSON)
-          // renderSpinner('search');
-          // renderError(error.message);
-       // });
+        renderSpinner('search');
+        renderError(error.message);
+      }
   
   };
   
