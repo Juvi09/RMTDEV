@@ -16,7 +16,11 @@ const clickHandler = event => {
     const recent = clickedButtonEl.className.includes('--recent') ? true : false;
 
     // ! sort job items
-    
+    if (recent) {
+
+    } else {
+
+    }
 };
 
 sortingEl.addEventListener('click', clickHandler);
