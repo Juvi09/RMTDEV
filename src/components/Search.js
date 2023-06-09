@@ -38,7 +38,7 @@ const submitHandler = async event => {
     // !fetch search results
      try {
 
-      const data = getData(`${BASE_API_URL}/jobs?search=${searchText}`);
+      const data = await getData(`${BASE_API_URL}/jobs?search=${searchText}`);
 
        // !extract job items
          const { jobItems }  = data;
