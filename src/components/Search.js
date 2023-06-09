@@ -3,7 +3,8 @@
     searchInputEl,
     searchFormEl,
     jobListSearchEl,
-    numberEl
+    numberEl,
+    getData
 } from '../common.js';
 
 import renderError from './Error.js';
@@ -35,17 +36,9 @@ const submitHandler = async event => {
     renderSpinner('search');
   
     // !fetch search results
-    
- 
-     
-      try {
+     try {
 
-        const response = await fetch(`${BASE_API_URL}/jobs?search=${searchText}`);
-        const data = await response.json();
-
-        if (!response.ok) { // !4xx, 5xx status code
-             throw new Error(data.description);
-          }
+      const data = getData(`${BASE_API_URL}/jobs?search=${searchText}`);
 
        // !extract job items
          const { jobItems }  = data;
