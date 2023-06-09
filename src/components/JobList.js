@@ -61,7 +61,7 @@ const clickHandler = async event => {
 
     try {
        // !fetch job item data
-      const data = await getData(`${BASE_API_URL}/jobs/${id}`);
+         const data = await getData(`${BASE_API_URL}/jobs/${id}`);
      // !extract job item
          const { jobItem } = data;
 
