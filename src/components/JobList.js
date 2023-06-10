@@ -1,5 +1,6 @@
 import {
     BASE_API_URL,
+    RESULTS_PER_PAGE,
     state,
     jobListSearchEl,
     jobDetailsContentEl,
@@ -19,7 +20,7 @@ const renderJobList = () => {
     jobListSearchEl.innerHTML = '';
 
     // ! display job items
-    state.searchJobItems.slice(state.currentPage * 7 - 7, state.currentPage * 7).forEach(jobItem =>{
+    state.searchJobItems.slice(state.currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE, state.currentPage * RESULTS_PER_PAGE).forEach(jobItem =>{
         const newJobItemHTML = `<li class="job-item">
         <a class="job-item__link" href="${jobItem.id}">
             <div class="job-item__badge">${jobItem.badgeLetters}</div>
