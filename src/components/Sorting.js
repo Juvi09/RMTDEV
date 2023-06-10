@@ -4,6 +4,8 @@ import {
     sortingBtnRecentEl,
     sortingBtnRelevantEl
 } from '../common.js';
+import renderJobList from './JobList.js';
+import renderPaginationButtons from './Pagination.js';
 
 const clickHandler = event => {
     
@@ -38,6 +40,12 @@ const clickHandler = event => {
             return b.relevantScore - a.relevantScore;  // e.g. if a.relevantScore = 94 and b.relevantScore = 78, then a is more relevant. a should be sorted higher than b. return a negative number.
         });
     }
+
+    // ! reset pagination buttons
+    renderPaginationButtons();
+
+    // ! render job items in list
+    renderJobList();
 
 
 };

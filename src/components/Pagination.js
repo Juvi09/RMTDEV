@@ -9,6 +9,7 @@ import {
 } from '../common.js';
 import renderJobList from './JobList.js';
 
+
 const renderPaginationButtons = () => {
     // display back button if we are on page 2 or further
     if (state.currentPage >= 2) {
@@ -55,3 +56,5 @@ const clickHandler = event => {
 };
 
 paginationEl.addEventListener('click', clickHandler);
+
+export default renderPaginationButtons;
