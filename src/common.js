@@ -6,7 +6,8 @@ export const DEFAULT_DISPLAY_TIME = 3500;
 
 // ! STATE OBJECT
  export const state = {
-    searchJobItems: []
+    searchJobItems: [],
+    currentPage: 1
 };
 
 

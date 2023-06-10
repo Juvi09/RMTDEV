@@ -1,4 +1,5 @@
 import {
+    state,
     sortingEl,
     sortingBtnRecentEl,
     sortingBtnRelevantEl
@@ -15,12 +16,27 @@ const clickHandler = event => {
     // ! check if intention is recent or relevant sorting
     const recent = clickedButtonEl.className.includes('--recent') ? true : false;
 
-    // ! sort job items
     if (recent) {
-
+        sortingBtnRecentEl.classList.add('sorting__button--active');
+        sortingBtnRelevantEl.classList.remove('sorting__button--active');
     } else {
-
+        sortingBtnRecentEl.classList.remove('sorting__button--active');
+        sortingBtnRelevantEl.classList.add('sorting__button--active');
     }
+
+    // ! sort job items
+    // How [].sort works:- return positive number to sort b higher than a. return negative number to sort a higher than b, return 0 to stay same.
+    if (recent) {
+        state.searchJobItems.sort((a,b) => {
+            return a.daysAgo - b.daysAgo;
+        });
+    } else {
+        state.searchJobItems.sort((a,b) => {
+            return b.relevantScore - a.relevantScore;  // e.g. if a.relevantScore = 94 and b.relevantScore = 78, then a is more relevant. a should be sorted higher than b. return a negative number.
+        });
+    }
+
+
 };
 
 sortingEl.addEventListener('click', clickHandler);

@@ -11,8 +11,15 @@ import renderJobDetails from './JobDetails.js';
 import renderError from './Error.js';
 
 
+
+
+
 const renderJobList = () => {
-    state.searchJobItems.slice(0, 7).forEach(jobItem =>{
+    // !remove previous job items
+    jobListSearchEl.innerHTML = '';
+
+    // ! display job items
+    state.searchJobItems.slice(state.currentPage * 7 - 7, state.currentPage * 7).forEach(jobItem =>{
         const newJobItemHTML = `<li class="job-item">
         <a class="job-item__link" href="${jobItem.id}">
             <div class="job-item__badge">${jobItem.badgeLetters}</div>
