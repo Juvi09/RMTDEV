@@ -3,8 +3,10 @@ import {
     RESULTS_PER_PAGE,
     state,
     jobListSearchEl,
+    jobListBookmarksEl,
     jobDetailsContentEl,
     getData,
+    jobListBookmarksEl,
 } from '../common.js';
 
 import renderSpinner from './Spinner.js';
@@ -15,13 +17,24 @@ import renderError from './Error.js';
 
 
 
-const renderJobList = () => {
+const renderJobList = (whichJobList = 'search') => {
+    // ! determine correct selctor for job list or bookmark list
+    const jobListEL = whichJobList === 'search' ? jobListSearchEl : jobListBookmarksEl;
+
     // !remove previous job items
     jobListSearchEl.innerHTML = '';
 
+    // ! determine the job items to be render
+     let jobItems;
+     if ( whichJobList === 'search') {
+        jobItems = state.searchJobItems.slice(state.currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE, state.currentPage * RESULTS_PER_PAGE);
+    } else if (whichJobList === 'bookmarks') {
+        jobItems = state.bookmarkJobitems;
+    }
+
     // ! display job items
     state.searchJobItems.slice(state.currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE, state.currentPage * RESULTS_PER_PAGE).forEach(jobItem =>{
-        const newJobItemHTML = `
+        const newJobItemHTML = ` 
         <li class="job-item ${state.activeJobItem.id === jobItem.id ? 'job-item--active' : ''}">
         <a class="job-item__link" href="${jobItem.id}">
             <div class="job-item__badge">${jobItem.badgeLetters}</div>
