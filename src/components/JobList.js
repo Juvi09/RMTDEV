@@ -5,8 +5,7 @@ import {
     jobListSearchEl,
     jobListBookmarksEl,
     jobDetailsContentEl,
-    getData,
-    jobListBookmarksEl,
+    getData
 } from '../common.js';
 
 import renderSpinner from './Spinner.js';
@@ -33,7 +32,7 @@ const renderJobList = (whichJobList = 'search') => {
     }
 
     // ! display job items
-    state.searchJobItems.slice(state.currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE, state.currentPage * RESULTS_PER_PAGE).forEach(jobItem =>{
+    jobItems.forEach(jobItem =>{
         const newJobItemHTML = ` 
         <li class="job-item ${state.activeJobItem.id === jobItem.id ? 'job-item--active' : ''}">
         <a class="job-item__link" href="${jobItem.id}">
@@ -108,5 +107,7 @@ const clickHandler = async event => {
 };
 
 jobListSearchEl.addEventListener('submit', clickHandler);
+jobListBookmarksEl.addEventListener('submit', clickHandler);
+
 
 export default renderJobList;
