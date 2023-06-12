@@ -8,7 +8,7 @@ import renderSpinner from './Spinner.js';
 import renderJobDetails from './JobDetails.js';
 
 
-const loadhandler = async () => {
+const loadhHashtagChangeHandler = async () => {
     // ! get the id from URL
     const id = window.location.hash.substring(1);
 
@@ -39,4 +39,5 @@ const loadhandler = async () => {
     }
 };
 
-window.addEventListener('DOMContentLoaded', loadhandler);
+window.addEventListener('DOMContentLoaded', loadhHashtagChangeHandler);
+window.addEventListener('hashchange', loadhHashtagChangeHandler)
