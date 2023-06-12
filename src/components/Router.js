@@ -1,5 +1,6 @@
 import {
     BASE_API_URL,
+    state,
     jobDetailsContentEl,
     getData
 } from '../common.js';
@@ -23,8 +24,13 @@ const loadhHashtagChangeHandler = async () => {
         try {
             // !fetch job item data
               const data = await getData(`${BASE_API_URL}/jobs/${id}`);
+
           // !extract job item
               const { jobItem } = data;
+          
+            // ! update state
+            state.activeJobItem = jobItem;
+
      
                // !remove spinner 
               renderSpinner('job-details');
