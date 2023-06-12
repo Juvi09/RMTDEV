@@ -21,7 +21,8 @@ const renderJobList = () => {
 
     // ! display job items
     state.searchJobItems.slice(state.currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE, state.currentPage * RESULTS_PER_PAGE).forEach(jobItem =>{
-        const newJobItemHTML = `<li class="job-item">
+        const newJobItemHTML = `
+        <li class="job-item ${state.activeJobItem.id === jobItem.id ? 'job-item--active' : ''}">
         <a class="job-item__link" href="${jobItem.id}">
             <div class="job-item__badge">${jobItem.badgeLetters}</div>
             <div class="job-item__middle">
