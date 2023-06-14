@@ -24,6 +24,9 @@ const clickHandler = () => {
     // ! update bookmark icon
     document.querySelector('.job-info__bookamrk-icon').classList.toggle('job-info__bookmark-icon--bookmarked');
 
+    // ! render search JobList
+    renderJobList();
+
 };
 
 const mouseEnterHandler = () => {
