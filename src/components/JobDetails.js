@@ -17,7 +17,7 @@ const renderJobDetails = jobItem => {
             <div class="job-info__below-badge">
                 <time class="job-info__time">${jobItem.daysAgo}d</time>
                 <button class="job-info__bookmark-btn">
-                    <i class="fa-solid fa-bookmark job-info__bookmark-icon"></i>
+                    <i class="fa-solid fa-bookmark job-info__bookmark-icon ${state.bookmarkJobitems.some(bookmarkJobitem => bookmarkJobitem.id === jobItem.id) && 'job-item__bookmark-icon--bookmarked'}"></i>
                 </button>
             </div>
          </div>
