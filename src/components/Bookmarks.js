@@ -16,6 +16,9 @@ const clickHandler = () => {
     } else {
         state.bookmarkJobitems.push(state.activeJobItem);
     }
+
+    // ! persist data with localStorage
+    localStorage.setItem('bookmarkJobItems', JSON.stringify(state.bookmarkJobitems));
     
 
     // ! update bookmark icon
