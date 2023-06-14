@@ -67,7 +67,7 @@ const clickHandler = async event => {
     const jobItemEL = event.target.closest('.job-item');
 
     // !remove the active class from previously aactive job item
-    document.querySelector('.job-item--active')?.classList.remove('job-item--active');
+    document.querySelectorAll('.job-item--active').forEach(jobItemWithActiveClass => jobItemWithActiveClass.classList.remove('job-item--active'));    
 
     // !add active class
     jobItemEL.classList.add('job-item--active');
