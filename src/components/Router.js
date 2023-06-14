@@ -8,6 +8,7 @@ import {
 import renderSpinner from './Spinner.js';
 import renderJobDetails from './JobDetails.js';
 import renderError from './Error.js'
+import renderJobList from './JobList.js'
 
 
 const loadhHashtagChangeHandler = async () => {
@@ -32,6 +33,9 @@ const loadhHashtagChangeHandler = async () => {
           
             // ! update state
             state.activeJobItem = jobItem;
+
+            // ! render search job List
+            renderJobList();
 
      
                // !remove spinner 

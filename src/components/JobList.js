@@ -69,9 +69,6 @@ const clickHandler = async event => {
     // !remove the active class from previously aactive job item
     document.querySelectorAll('.job-item--active').forEach(jobItemWithActiveClass => jobItemWithActiveClass.classList.remove('job-item--active'));    
 
-    // !add active class
-    jobItemEL.classList.add('job-item--active');
-
     // !empty the job details section
     jobDetailsContentEl.innerHTML = '';
  
@@ -84,6 +81,9 @@ const clickHandler = async event => {
     // ! update state
     const allJobItems = [...state.activeJobItem, ...state.bookmarkJobitems];
     state.activeJobItem = allJobItems.find(jobItem => jobItem.id === +id);
+
+    // ! render saerch job list
+    renderJobList();
 
     // !add id to url
     history.pushState(null,'',`/#${id}`);
