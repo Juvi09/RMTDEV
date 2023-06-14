@@ -11,7 +11,12 @@ const clickHandler = () => {
     if (event.target.claasName.includes('bookmark')) return;
 
     // ! update state
-    state.bookmarkJobitems.push(state.activeJobItem);
+    if (state.bookmarkJobitems.some(bookmarkJobitem => bookmarkJobitem.id === state.activeJobItem.id)){
+        state.bookmarkJobitems = state.bookmarkJobitems.filter(bookmarkJobitem => bookmarkJobitem.id !== state.activeJobItem.id);
+    } else {
+        state.bookmarkJobitems.push(state.activeJobItem);
+    }
+    
 
     // ! update bookmark icon
     document.querySelector('.job-info__bookamrk-icon').classList.toggle('job-info__bookmark-icon--bookmarked');
