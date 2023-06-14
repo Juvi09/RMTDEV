@@ -15,6 +15,8 @@ const loadhHashtagChangeHandler = async () => {
     const id = window.location.hash.substring(1);
 
     if (id) {
+
+        document.querySelectorAll('.job-item--active').forEach(jobItemWithActiveClass => jobItemWithActiveClass.classList.remove('job-item--active'));
         // ! remove previous job details content
         jobDetailsContentEl.innerHTML = '';
 
